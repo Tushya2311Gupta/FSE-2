@@ -1,11 +1,25 @@
-name: My first workflow 
+name: Pull Request Check
 
-on: [push]
+on:
+  push:
+    branches:
+      - tushya
+  pull_request:
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Print Message
-      run: echo "Hello, World!"
+      - name: Print Message
+        run: echo "Hello, World!"
+
+      - name: Show GitHub event details
+        run: |
+          echo "Workflow is running successfully."
+          echo "Event: ${{ github.event_name }}"
+          echo "Source branch: ${{ github.head_ref || github.ref_name }}"
+          echo "Target branch: ${{ github.base_ref }}"
+
