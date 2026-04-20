@@ -24,7 +24,7 @@ name: Pull Request Check
 #           echo "Target branch: ${{ github.base_ref }}"
 
 on: Push
-Jobs:
+jobs:
   run-test:
     runs-on: ubuntu-latest
     
