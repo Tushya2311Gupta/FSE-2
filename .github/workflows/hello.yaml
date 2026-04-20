@@ -1,25 +1,39 @@
-name: Pull Request Check
+# name: Pull Request Check
 
-on:
-  push:
-    branches:
-      - tushya
-  pull_request:
-    branches:
-      - main
+# on:
+#   push:
+#     branches:
+#       - tushya
+#   pull_request:
+#     branches:
+#       - main
 
-jobs:
-  build:
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Print Message
+#         run: echo "Hello, World!"
+
+#       - name: Show GitHub event details
+#         run: |
+#           echo "Workflow is running successfully."
+#           echo "Event: ${{ github.event_name }}"
+#           echo "Source branch: ${{ github.head_ref || github.ref_name }}"
+#           echo "Target branch: ${{ github.base_ref }}"
+
+on: Push
+Jobs:
+  run-test:
     runs-on: ubuntu-latest
-
+    
     steps:
-      - name: Print Message
-        run: echo "Hello, World!"
-
-      - name: Show GitHub event details
-        run: |
-          echo "Workflow is running successfully."
-          echo "Event: ${{ github.event_name }}"
-          echo "Source branch: ${{ github.head_ref || github.ref_name }}"
-          echo "Target branch: ${{ github.base_ref }}"
-
+      -run: echo "test is running"
+      -run: echo "test successful"
+  
+  deploy_App:
+    needs: run_test
+    runs-on: ubuntu-latest
+    steps:
+      -run: echo "workflow successful"
