@@ -60,3 +60,11 @@ jobs:
       
       - name: Check npm Version
         run: npm -v
+      
+      - name: Setup docker
+        uses: docker/setup-buildx-action@v2
+        with:
+          version: latest
+
+      - name: Check docker version
+        run: docker --version
