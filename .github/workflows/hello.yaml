@@ -39,7 +39,10 @@ name: Pull Request Check
 #       - run: echo "workflow successful"
 
 
-on: [push]
+on: 
+  push:
+    branches:
+      - tushya
 jobs:
   test:
     runs-on: ubuntu-latest
