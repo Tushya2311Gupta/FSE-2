@@ -23,17 +23,29 @@ name: Pull Request Check
 #           echo "Source branch: ${{ github.head_ref || github.ref_name }}"
 #           echo "Target branch: ${{ github.base_ref }}"
 
-on: Push
-jobs:
-  run_test:
-    runs-on: ubuntu-latest
+# on: Push
+# jobs:
+#   run_test:
+#     runs-on: ubuntu-latest
     
-    steps:
-      - run: echo "test is running"
-      - run: echo "test successful"
+#     steps:
+#       - run: echo "test is running"
+#       - run: echo "test successful"
   
-  deploy_App:
-    needs: run_test
+#   deploy_App:
+#     needs: run_test
+#     runs-on: ubuntu-latest
+#     steps:
+#       - run: echo "workflow successful"
+
+
+on: [push]
+jobs:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "workflow successful"
+      - name: checkout code
+      - uses: actions/checkout@v4
+
+      - name: list file
+        run: ls 
