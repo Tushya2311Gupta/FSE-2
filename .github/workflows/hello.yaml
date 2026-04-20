@@ -1,11 +1,70 @@
-name: My first workflow 
+name: Pull Request Check
 
-on: [push]
+# on:
+#   push:
+#     branches:
+#       - tushya
+#   pull_request:
+#     branches:
+#       - main
 
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - name: Print Message
+#         run: echo "Hello, World!"
+
+#       - name: Show GitHub event details
+#         run: |
+#           echo "Workflow is running successfully."
+#           echo "Event: ${{ github.event_name }}"
+#           echo "Source branch: ${{ github.head_ref || github.ref_name }}"
+#           echo "Target branch: ${{ github.base_ref }}"
+
+# on: Push
+# jobs:
+#   run_test:
+#     runs-on: ubuntu-latest
+    
+#     steps:
+#       - run: echo "test is running"
+#       - run: echo "test successful"
+  
+#   deploy_App:
+#     needs: run_test
+#     runs-on: ubuntu-latest
+#     steps:
+#       - run: echo "workflow successful"
+
+
+on: 
+  push:
+    branches:
+      - tushya
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Print Message
-      run: echo "Hello, World!"
+      - name: checkout code 
+        uses: actions/checkout@v4
+
+      - name: Setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Check Node Version
+        run: node -v
+      
+      - name: Check npm Version
+        run: npm -v
+      
+      - name: Setup docker
+        uses: docker/setup-buildx-action@v2
+        with:
+          version: latest
+
+      - name: Check docker version
+        run: docker --version
