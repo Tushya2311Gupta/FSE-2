@@ -1,4 +1,4 @@
-# name: Pull Request Check
+name: Pull Request Check
 
 # on:
 #   push:
@@ -29,11 +29,11 @@ Jobs:
     runs-on: ubuntu-latest
     
     steps:
-      -run: echo "test is running"
-      -run: echo "test successful"
+      - run: echo "test is running"
+      - run: echo "test successful"
   
   deploy_App:
     needs: run_test
     runs-on: ubuntu-latest
     steps:
-      -run: echo "workflow successful"
+      - run: echo "workflow successful"
